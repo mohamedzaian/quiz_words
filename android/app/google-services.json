@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "536206797405",
+    "firebase_url": "https://quizwords-637aa-default-rtdb.firebaseio.com",
+    "project_id": "quizwords-637aa",
+    "storage_bucket": "quizwords-637aa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536206797405:android:0b8b1b15c9768c11ab3bb4",
+        "android_client_info": {
+          "package_name": "com.example.quizz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536206797405-12ut9fpm6ng4u911aop5fgdq4hvsb13q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHa3CKkVY56cwDqTr83oUmIWFsjeKvW5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536206797405-12ut9fpm6ng4u911aop5fgdq4hvsb13q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "536206797405-0f8mtcfgp9fb0c214rvla9d898lp9kgd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.quizWords"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
