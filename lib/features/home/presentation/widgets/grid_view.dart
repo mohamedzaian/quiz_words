@@ -8,21 +8,19 @@ class CustomGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: GridView.builder(
+        padding: EdgeInsets.all( 20),
         itemCount: 20,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
           childAspectRatio: 1.3,
 
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20
         ),
         itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.only(left: 15.0 , top: 10),
+          return Expanded(
             child: Container(
-              width: 100
-
-            ,
+              
               decoration: BoxDecoration(
                 color: Color(0xffFD850D),
                 borderRadius: BorderRadius.circular(10),
@@ -33,7 +31,7 @@ class CustomGridView extends StatelessWidget {
                     blurRadius: 4,
                   ),
                 ],
-
+            
               ),
               child:
               Stack(
@@ -49,7 +47,7 @@ class CustomGridView extends StatelessWidget {
                       color: Color(0xff65DB12),
                     ),
                   ),
-
+            
                 ],
               ),
             ),

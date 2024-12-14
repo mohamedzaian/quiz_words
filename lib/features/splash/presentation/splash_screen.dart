@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizz/features/home/home_screen.dart';
+import 'package:quizz/features/home/presentation/home_screen.dart';
 import 'package:quizz/features/splash/presentation/widgets/splash_screen_body.dart';
 import 'package:get/get.dart';
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:quizz/features/home/widgets/grid_view.dart';
-import 'package:quizz/features/home/widgets/levels_text.dart';
-import 'package:quizz/features/home/widgets/remove_ads_button.dart';
+import 'package:quizz/features/home/presentation/widgets/grid_view.dart';
+import 'package:quizz/features/home/presentation/widgets/levels_text.dart';
+import 'package:quizz/features/home/presentation/widgets/remove_ads_button.dart';
 
-import '../../../core/container decoration.dart';
+import '../../../../core/container decoration.dart';
+
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
