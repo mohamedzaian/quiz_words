@@ -12,7 +12,6 @@ class SplashScreenBody extends StatelessWidget {
     return  Container(
       height: double.infinity,
       width: double.infinity,
-
       decoration:BoxDecoration(
         gradient: LinearGradient(
           colors: [

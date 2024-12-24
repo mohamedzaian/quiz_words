@@ -8,33 +8,35 @@ part 'levels_state.dart';
 class LevelsCubit extends Cubit<LevelsState> {
   LevelsCubit() : super(LevelsInitial());
 
-  loadLevels() async {
+  List<QuestionModel> questions = [];
+  List keys = [];
+
+  loadData() async {
     emit(LevelsLoading());
-    final levels = await FirebaseDatabase.instance.ref('data');
-    DatabaseEvent event = await levels.once();
 
-    // final data = levels.value ;
-    // List<QuestionModel> questions = [];
+    try {
+      final snapshot = await FirebaseDatabase.instance.ref().child('data').get();
+      final data = snapshot.value as Map;
 
-    final Map<dynamic, dynamic> levelData = Map<dynamic, dynamic>.from(event.snapshot.value as Map);
-    final keys = levelData.keys.toList();
-    // levelData.forEach((keys , value)
-    // {
-    //   keys.add(keys);
-    // });
-    print(keys);
-    // for (var level in keys) {
-    //   final levelData = data[level];
-    //   if (levelData is Map) {
-    //     final question = QuestionModel(
-    //       q: levelData['q'],
-    //       i: levelData['i'],
-    //       a: levelData['a'],
-    //     );
-    //     questions.add(question);
-    //   }
-    // }
-    //
-    // print(questions);
+      keys = data.keys.toList();
+
+      print('keys ==> $keys');
+
+      for(final levelKey in data.keys) {
+        final levelData = Map<String, dynamic>.from(data[levelKey] as Map);
+
+        for(final questionKey in levelData.keys){
+          final questionData = Map<String, dynamic>.from(levelData[questionKey] as Map);
+
+          final question = QuestionModel.fromJson(questionData);
+          questions.add(question);
+        }
+      }
+      print('questions ==> $questions');
+
+      emit(LevelsSuccess());
+    } catch (e) {
+      emit(LevelsError(error: e.toString()));
+    }
   }
 }
