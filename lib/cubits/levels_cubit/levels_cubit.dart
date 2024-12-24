@@ -16,7 +16,7 @@ class LevelsCubit extends Cubit<LevelsState> {
     // final data = levels.value ;
     // List<QuestionModel> questions = [];
 
-    final levelData = Map<dynamic , dynamic> .from(event.snapshot.value as Map);
+    final Map<dynamic, dynamic> levelData = Map<dynamic, dynamic>.from(event.snapshot.value as Map);
     final keys = levelData.keys.toList();
     // levelData.forEach((keys , value)
     // {
