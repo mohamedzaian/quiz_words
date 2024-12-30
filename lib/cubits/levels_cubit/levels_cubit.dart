@@ -8,35 +8,15 @@ part 'levels_state.dart';
 class LevelsCubit extends Cubit<LevelsState> {
   LevelsCubit() : super(LevelsInitial());
 
-  List<QuestionModel> questions = [];
   List keys = [];
 
   loadData() async {
     emit(LevelsLoading());
 
-    try {
-      final snapshot = await FirebaseDatabase.instance.ref().child('data').get();
-      final data = snapshot.value as Map;
+    final data = await FirebaseDatabase.instance.ref().child('data').get();
+    final count = data.value as Map;
 
-      keys = data.keys.toList();
-
-      print('keys ==> $keys');
-
-      for(final levelKey in data.keys) {
-        final levelData = Map<String, dynamic>.from(data[levelKey] as Map);
-
-        for(final questionKey in levelData.keys){
-          final questionData = Map<String, dynamic>.from(levelData[questionKey] as Map);
-
-          final question = QuestionModel.fromJson(questionData);
-          questions.add(question);
-        }
-      }
-      print('questions ==> $questions');
-
-      emit(LevelsSuccess());
-    } catch (e) {
-      emit(LevelsError(error: e.toString()));
-    }
+    keys = count.keys.toList();
+    emit(LevelsSuccess(count: keys.length));
   }
 }
