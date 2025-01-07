@@ -3,10 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:quizz/core/custom_text.dart';
 import 'package:quizz/cubits/levels_cubit/levels_cubit.dart';
-import 'package:quizz/features/home/data/repo/get_count_level.dart';
 import 'package:quizz/features/level/presentation/level_screen.dart';
 
-import '../../../../cubits/data_cubit/get_data_cubit.dart';
 
 class CustomGridView extends StatefulWidget {
   const CustomGridView({super.key});

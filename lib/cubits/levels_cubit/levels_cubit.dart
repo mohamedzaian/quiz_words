@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:meta/meta.dart';
-import 'package:quizz/features/home/data/model/level_model.dart';
 
 part 'levels_state.dart';
 
