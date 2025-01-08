@@ -17,7 +17,7 @@ class CustomImage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Container(
 
-        height: context.height / 3.5,
+        height: context.height / 4,
         width: context.width,
 
         decoration: BoxDecoration(
