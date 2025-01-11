@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizz/core/colors.dart';
 
 import '../../../../core/custom_text.dart';
 import '../../../home/data/model/level_model.dart';
@@ -13,6 +14,6 @@ class Question extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: CustomText(text: 'This is the ${data.q}', fontsize: 24 , color: Color(0xff4F81A8),), );
+    return Center(child: CustomText(text: 'This is the ${data.q}', fontsize: 24 , color: brownColor,), );
   }
 }

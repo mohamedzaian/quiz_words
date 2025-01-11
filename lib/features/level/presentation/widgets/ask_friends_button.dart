@@ -21,7 +21,7 @@ class AskFriendsButton extends StatelessWidget {
           children: [
             Text(
               'Ask Friends',
-              style: TextStyle(color: textColor, fontSize: 16),
+              style: TextStyle(color: brownColor, fontSize: 16),
             ),
             Icon(
               FontAwesomeIcons.userGroup,

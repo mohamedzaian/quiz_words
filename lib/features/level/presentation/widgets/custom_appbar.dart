@@ -19,8 +19,7 @@ class CustomAppbar extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10),
       height: 100,
       decoration: BoxDecoration(
-        color: Color(0xffFF0088D1),
-        borderRadius: BorderRadius.circular(10),
+        color: brownColor,
       ),
       child: Row(
         children: [
@@ -48,7 +47,7 @@ class CustomAppbar extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal:8),
             height: 50,
-            width: 100,
+            width: 70,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(25)),
@@ -57,8 +56,8 @@ class CustomAppbar extends StatelessWidget {
 
               spacing: 20,
               children: [
-                Text("${initializeIndex + 1 } / ${length}",
-                  style: TextStyle(fontSize: 32
+                Text("${initializeIndex + 1 }/${length}",
+                  style: TextStyle(fontSize: 30
                       ,
                       color: textColor),
                 )

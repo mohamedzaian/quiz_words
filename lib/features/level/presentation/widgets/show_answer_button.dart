@@ -29,7 +29,7 @@ class ShowAnswerButton extends StatelessWidget {
         Text(
           'Show Answer',
           style: TextStyle(
-              color: textColor,
+              color: brownColor,
               fontSize: 16
           ),
         )

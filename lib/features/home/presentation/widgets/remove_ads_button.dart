@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizz/core/custom_text.dart';
+import 'package:quizz/core/custom_bold_text.dart';
 
 class RemoveAdsButton extends StatelessWidget {
   const RemoveAdsButton({super.key});
@@ -8,7 +8,7 @@ class RemoveAdsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return  ElevatedButton(onPressed: ()
         {
-        }, child: CustomText(text: 'REMOVE ADS',fontsize: 20,),
+        }, child: CustomBoldText(text: 'REMOVE ADS',fontsize: 20,),
     style:ElevatedButton.styleFrom(
       backgroundColor: Color(0xff4D2501),
       shape: RoundedRectangleBorder(

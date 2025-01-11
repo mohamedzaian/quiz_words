@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quizz/core/custom_text.dart';
+
+import '../../../../core/custom_text.dart';
 
 class LevelsText extends StatelessWidget {
   const LevelsText({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizz/core/custom_text.dart';
+import 'package:quizz/core/custom_bold_text.dart';
 import 'package:quizz/core/list_drawer_items.dart';
 
 import '../../../../core/images.dart';
@@ -52,7 +52,7 @@ class HomeDrawer extends StatelessWidget {
                  children: [
                    drawerItems[i].icon,
                    SizedBox(width: 20),
-                   CustomText(text: drawerItems[i].name, fontsize: 24 , color: Color(0xff4D2501),),
+                   CustomBoldText(text: drawerItems[i].name, fontsize: 24 , color: Color(0xff4D2501),),
 
                  ],
                ),

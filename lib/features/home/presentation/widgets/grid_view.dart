@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:quizz/core/custom_text.dart';
+import 'package:quizz/core/custom_bold_text.dart';
 import 'package:quizz/cubits/levels_cubit/levels_cubit.dart';
 import 'package:quizz/features/level/presentation/level_screen.dart';
 
@@ -68,7 +68,7 @@ class _CustomGridViewState extends State<CustomGridView> {
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        CustomText(text: '${index + 1} ', fontsize: 30),
+                        CustomBoldText(text: '${index + 1} ', fontsize: 30),
                         Positioned(
                           bottom: 0,
                           right: 0,

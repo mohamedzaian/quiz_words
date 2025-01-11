@@ -15,3 +15,14 @@ Decoration ContainerDecoration = BoxDecoration(
 
 
 );
+Decoration splashDecoration = BoxDecoration(
+  gradient: LinearGradient(
+    colors: [
+      Color(0xffFFD0A2),
+      Color(0xffFFD0A2),
+      Color(0xFFFFffff),
+    ],
+    begin: Alignment.topLeft, // Gradient starts here
+    end: Alignment.bottomRight,
+  ),
+);
