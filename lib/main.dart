@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz/cubits/data_cubit/get_data_cubit.dart';
 import 'package:quizz/cubits/levels_cubit/levels_cubit.dart';
-import 'package:quizz/features/auth/presentation/signin_screen.dart';
 import 'package:quizz/features/splash/presentation/splash_screen.dart';
 import 'package:get/get.dart';
 import 'package:quizz/firebase_options.dart';

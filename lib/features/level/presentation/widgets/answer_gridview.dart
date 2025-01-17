@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quizz/core/custom_bold_text.dart';
-import 'package:quizz/features/level/presentation/widgets/letter_grid_view.dart';
 
 import '../../../../core/colors.dart';
 import '../../../home/data/model/level_model.dart';
@@ -20,7 +19,6 @@ class AnswerGridView extends StatefulWidget {
 }
 
 class AnswerGridViewState extends State<AnswerGridView> {
-  @override
   List <String> answer = [] ;
 
 @override
