@@ -12,6 +12,7 @@ class LetterGridVIew extends StatefulWidget {
   final String answer;
 
 
+
   @override
   State<LetterGridVIew> createState() => LetterGridVIewState();
 }
@@ -29,6 +30,7 @@ class LetterGridVIewState extends State<LetterGridVIew> {
   Widget build(BuildContext context) {
     return Expanded(
       child: GridView.builder(
+          physics: NeverScrollableScrollPhysics(),
           itemCount: widget.letters.length,
           padding: EdgeInsets.symmetric(horizontal: 12),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

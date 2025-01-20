@@ -9,6 +9,7 @@ class AnswerCubit extends Cubit<AnswerState> {
   {
     List <String> answer = [];
     answer.add(letter);
+    print(answer);
 
 emit(Answerlist(answers: answer))    ;
   }

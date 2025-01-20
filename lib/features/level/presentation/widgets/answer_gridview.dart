@@ -1,54 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quizz/core/custom_bold_text.dart';
 
 import '../../../../core/colors.dart';
+import '../../../../core/custom_bold_text.dart';
 import '../../../home/data/model/level_model.dart';
 
-class AnswerGridView extends StatefulWidget {
-    AnswerGridView({
+class AnswerGridView extends StatelessWidget {
+  const AnswerGridView({
     super.key,
     required this.data,
+    required this.answer,
   });
 
   final QuestionModel data;
+  final List<String> answer;
 
-
-  @override
-  State<AnswerGridView> createState() => AnswerGridViewState();
-}
-
-class AnswerGridViewState extends State<AnswerGridView> {
-  List <String> answer = [] ;
-
-@override
-  void initState() {
-
-    super.initState();
-  }
   @override
   Widget build(BuildContext context) {
     return Container(
-height: context.height * 0.13,
+        height: context.height * 0.13,
 
         child:
-    GridView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 12),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 8 , mainAxisSpacing: 12 , crossAxisSpacing: 6 , childAspectRatio: 1),
-        itemCount: widget.data.a.length,
+        GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 8 , mainAxisSpacing: 12 , crossAxisSpacing: 6 , childAspectRatio: 1),
+            itemCount:data.a.length,
 
-        itemBuilder: (context, i )
-        {
-          return Container(
-            child: answer.isEmpty  ? null : Center(child: CustomBoldText(text: answer[i], fontsize: 18)),
-            height: 35,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: textColor),
+            itemBuilder: (context, i )
+            {
+              return Container(
+                child:    Center(child:  CustomBoldText(text: answer.length > i ? answer[i] : '' , fontsize: 18)),
+                height: 35,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: textColor),
 
 
-          );
-        }));
+              );
+            }));
   }
 }
-

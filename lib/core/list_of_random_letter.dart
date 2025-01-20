@@ -16,7 +16,7 @@ List <String>getList (String answer )
   List<String>letters = generateRandomStrings(7 , 1);
 List list = answer.split('');
 for(String l in list) {
-letters.add(l.toUpperCase());
+letters.add(l);
   }
   return letters;
 
