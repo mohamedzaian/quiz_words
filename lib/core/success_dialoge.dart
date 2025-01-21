@@ -1,7 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 
-successDialoge (BuildContext context , int index)
+successDialoge (BuildContext context ,)
 {
   AwesomeDialog(
     context: context,
@@ -12,7 +12,7 @@ successDialoge (BuildContext context , int index)
     desc: 'Your Answer is correct',
 
     btnOkOnPress: () {
-      index++;
+
     },
   ).show();
 }

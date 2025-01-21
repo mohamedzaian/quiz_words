@@ -19,7 +19,7 @@ class DoneButton extends StatefulWidget {
 
 class _DoneButtonState extends State<DoneButton> {
   @override
-  final listEqual = ListEquality();
+  ListEquality listEqual = ListEquality();
   void initState() {
     super.initState();
   }
@@ -41,7 +41,7 @@ class _DoneButtonState extends State<DoneButton> {
               bool equal = listEquals(widget.answer1, widget.answer2.split(''));
 
               if (equal) {
-                successDialoge(context ,widget.index);
+                successDialoge(context ,);
                 widget.index++;
                 setState(() {
 
