@@ -1,7 +1,11 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-faildDialoge(BuildContext context ,)
+import '../cubits/answer_cubit/answer_cubit.dart';
+
+
+faildDialoge(BuildContext context ,List<String>answers)
 {
  AwesomeDialog(
     context: context,
@@ -11,6 +15,9 @@ faildDialoge(BuildContext context ,)
     title: 'Error',
     desc: 'The answer isn\'t correct Please try again',
     btnCancelOnPress: () {
+
+
+
     },
   )..show();
 

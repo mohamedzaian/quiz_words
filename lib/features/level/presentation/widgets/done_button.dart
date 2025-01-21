@@ -7,6 +7,8 @@ import 'package:quizz/core/custom_text.dart';
 import 'package:quizz/core/faild_dialoge.dart';
 import 'package:quizz/core/success_dialoge.dart';
 
+import '../../../../core/empty_dialoge.dart';
+
 class DoneButton extends StatefulWidget {
    DoneButton({super.key, required this.answer1, required this.answer2, required this.index,});
   final List<String> answer1;
@@ -40,19 +42,22 @@ class _DoneButtonState extends State<DoneButton> {
             onPressed: () {
               bool equal = listEquals(widget.answer1, widget.answer2.split(''));
 
-              if (equal) {
-                successDialoge(context ,);
-                widget.index++;
-                setState(() {
 
-                });
-                print(widget.index);
-              } else {
-                setState(() {
-                  faildDialoge(context );
 
-                });
+
+if (widget.answer1.isNotEmpty) {
+                if (equal) {
+                  successDialoge(
+                    context,
+                    widget.answer1
+                  );
+                  widget.index++;
+                } else {
+                  faildDialoge(context,widget.answer1);
+                }
               }
+              showEmptyListDialog(context);
+
             },
             child: CustomText(text: "Done", fontsize: 20)),
       ),

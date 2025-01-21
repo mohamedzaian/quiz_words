@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz/cubits/answer_cubit/answer_cubit.dart';
 import 'package:quizz/cubits/data_cubit/get_data_cubit.dart';
 import 'package:quizz/cubits/levels_cubit/levels_cubit.dart';
 import 'package:quizz/features/splash/presentation/splash_screen.dart';
@@ -30,6 +31,8 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => DataCubit(),
+        ),  BlocProvider(
+          create: (context) => AnswerCubit(),
         ),
       ],
       child: GetMaterialApp(

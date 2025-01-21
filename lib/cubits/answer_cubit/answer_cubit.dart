@@ -5,13 +5,21 @@ part 'answer_state.dart';
 
 class AnswerCubit extends Cubit<AnswerState> {
   AnswerCubit() : super(AnswerInitial());
-  getAnswer (String letter )
+  List <String> answer = [];
+
+  setAnswer (String letter )
   {
-    List <String> answer = [];
     answer.add(letter);
     print(answer);
 
-emit(Answerlist(answers: answer))    ;
+   ;
   }
+  getAnswer ()
+  {
+    print('.....$answer');
+    emit(Answerlist(answers: answer));
+
+  }
+
 
 }
