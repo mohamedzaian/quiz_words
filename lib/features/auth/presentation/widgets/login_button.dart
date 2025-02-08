@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz/core/sign_in_with_google_service.dart';
+import 'package:quizz/cubits/add_user_cubit/add_user_cubit.dart';
 import '../../../../core/images.dart';
 
 class LoginButton extends StatelessWidget {
@@ -11,6 +13,9 @@ class LoginButton extends StatelessWidget {
       onTap: () async
       {
       await  signInWithGoogle();
+      context.read<AddUserCubit>().addNewUser();
+
+
 
       },
       child: Padding(

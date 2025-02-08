@@ -84,9 +84,11 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
                       SizedBox(
                         height: context.height * .01,
                       ),
-                      AnswerGridView(
-                        answer: answer,
-                        data: data,
+                      Center(
+                        child: AnswerGridView(
+                          answer: answer,
+                          data: data,
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -130,7 +132,7 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
                                   child: Container(
                                     child: Center(
                                       child: CustomBoldText(
-                                          text: letters[i], fontsize: 18),
+                                          text: letters[i].toUpperCase(), fontsize: 18),
                                     ),
                                     height: 35,
                                     decoration: BoxDecoration(
