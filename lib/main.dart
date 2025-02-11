@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quizz/cubits/add_user_cubit/add_user_cubit.dart';
 import 'package:quizz/cubits/answer_cubit/answer_cubit.dart';
 import 'package:quizz/cubits/data_cubit/get_data_cubit.dart';
+import 'package:quizz/cubits/get_user_data/get_user_data_cubit.dart';
 import 'package:quizz/cubits/levels_cubit/levels_cubit.dart';
 import 'package:quizz/features/splash/presentation/splash_screen.dart';
 import 'package:get/get.dart';
@@ -36,6 +37,8 @@ class MyApp extends StatelessWidget {
           create: (context) => AnswerCubit(),
         ), BlocProvider(
           create: (context) => AddUserCubit(),
+        ),BlocProvider(
+          create: (context) => GetUserDataCubit(),
         ),
       ],
       child: GetMaterialApp(
