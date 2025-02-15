@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 bool checkAuth ()
 {
-  final authId = FirebaseAuth.instance.currentUser!.uid;
+  User? authId = FirebaseAuth.instance.currentUser;
   if (authId == null) {
     return false;
   } else {

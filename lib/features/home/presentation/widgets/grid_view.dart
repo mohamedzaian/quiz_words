@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:quizz/core/custom_bold_text.dart';
+import 'package:quizz/cubits/get_user_data/get_user_data_cubit.dart';
 import 'package:quizz/cubits/levels_cubit/levels_cubit.dart';
+import 'package:quizz/features/home/presentation/widgets/container_level.dart';
 import 'package:quizz/features/level/presentation/level_screen.dart';
+
+import '../../../level/data/models/user_model.dart';
 
 
 class CustomGridView extends StatefulWidget {
@@ -25,65 +28,47 @@ class _CustomGridViewState extends State<CustomGridView> {
   Widget build(BuildContext context) {
     return BlocBuilder<LevelsCubit, LevelsState>(
       builder: (context, state) {
-
-
-        if(state is LevelsLoading){
+        if (state is LevelsLoading) {
           return Center(child: CircularProgressIndicator(),);
         }
         if (state is LevelsError) {
           return Center(child: Text(state.error),);
         }
-        if (state is LevelsSuccess)
-        {
-          return Expanded(
-            child: GridView.builder(
-              padding: EdgeInsets.all(20),
-              itemCount: state.count,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 1.3,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20),
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
+        if (state is LevelsSuccess) {
+          int count = state.count;
+          return BlocBuilder<GetUserDataCubit, GetUserDataState>(
+            builder: (context, state) {
+              if (state is GetUserDataSuccess) {
+                UserModel usermodel = state.userModel;
+                return Expanded(
+                  child: GridView.builder(
+                    padding: EdgeInsets.all(20),
+                    itemCount: count,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: 1.3,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20),
+                    itemBuilder: (BuildContext context, int index) {
+                     List <Level> levels = usermodel.levels;
+                      return GestureDetector(
+                        onTap: () {
 
-
-                    Get.to(
-                      () => LevelScreen(index: index + 1,),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xffFD850D),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          offset: Offset(2, 2),
-                          blurRadius: 4,
-                        ),
-                      ],
-                    ),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        CustomBoldText(text: '${index + 1} ', fontsize: 30),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Icon(
-                            Icons.check_circle,
-                            size: 30,
-                            color: Color(0xff65DB12),
-                          ),
-                        ),
-                      ],
-                    ),
+                          Get.to(
+                            () => LevelScreen(
+                              index: index + 1,
+                              level: usermodel.levels[index],
+                            ),
+                          );
+                        },
+                        child: ContainerLevel(levels: levels , index : index),
+                      );
+                    },
                   ),
                 );
-              },
-            ),
+              }
+              return SizedBox();
+            },
           );
         }
 
@@ -92,3 +77,4 @@ class _CustomGridViewState extends State<CustomGridView> {
     );
   }
 }
+

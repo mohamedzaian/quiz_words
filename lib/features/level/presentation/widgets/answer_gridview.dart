@@ -30,7 +30,7 @@ class AnswerGridView extends StatelessWidget {
               return Container(
                 child: Center(
                     child: CustomBoldText(
-                        text: answer.length > i ? answer[i].toUpperCase() : '',
+                        text: answer.length > i ? answer[i] : '',
                         fontsize: 18)),
                 height: 35,
                 decoration: BoxDecoration(

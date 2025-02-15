@@ -52,7 +52,7 @@ class Level {
 
   factory Level.fromJson(Map<String, dynamic> json) {
     return Level(
-      currentLevelQuestion: json['currentLevelQuestion'],
+      currentLevelQuestion: json['currentLevelQuestion'] ?? 0,
       total: json['total'],
     );
   }

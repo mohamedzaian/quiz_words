@@ -7,11 +7,13 @@ class CustomAppbar extends StatelessWidget {
   const CustomAppbar({
     super.key,
     required this.initializeIndex,
-    required this.length,
+    required this.length, required this.currentLevelQuestion, required this.total,
   });
 
   final int initializeIndex;
   final int length;
+  final int currentLevelQuestion;
+  final int total;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class CustomAppbar extends StatelessWidget {
                   scale: 2,
                 ),
                 Text(
-                  '0',
+                  '$total',
                   style: TextStyle(fontSize: 32 ,color: textColor),
                 )
               ],
@@ -56,7 +58,7 @@ class CustomAppbar extends StatelessWidget {
 
               spacing: 20,
               children: [
-                Text("${initializeIndex + 1 }/${length}",
+                Text("${currentLevelQuestion + 1 }/${length}",
                   style: TextStyle(fontSize: 30
                       ,
                       color: textColor),

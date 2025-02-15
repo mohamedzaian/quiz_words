@@ -1,22 +1,36 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quizz/cubits/answer_cubit/answer_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:quizz/core/colors.dart';
 
-successDialoge (BuildContext context ,List<String> answers)
+successDialog (BuildContext context ,String answers)
 {
   AwesomeDialog(
     context: context,
     dialogType: DialogType.success,
     headerAnimationLoop: false,
     animType: AnimType.scale,
-    title: 'Success',
-    desc: 'Your Answer is correct',
+    title: 'Perfect!',
+    titleTextStyle: TextStyle(
+      fontSize: 24.0,
+      fontWeight: FontWeight.bold,
+      color: textColor
+    ),
+    desc: '$answers',
+    descTextStyle: TextStyle(
+      fontSize: 20.0,
+      fontWeight: FontWeight.bold,
+      color: brownColor
+    ),
+      btnOkOnPress: () {
+        if (context.mounted) {
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop();
+          }
+        }
+      },
+  btnCancelColor: Colors.green,
+    btnCancelText: 'Continue'
 
-    btnOkOnPress: () {
-      answers.clear();
-      context.read<AnswerCubit>().getAnswer();
 
-    },
   ).show();
 }
