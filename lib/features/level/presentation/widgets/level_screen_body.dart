@@ -1,16 +1,15 @@
 import 'package:collection/collection.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:quizz/core/add_new_level.dart';
 import 'package:quizz/core/custom_bold_text.dart';
 import 'package:quizz/core/list_of_random_letter.dart';
 import 'package:quizz/core/update_data.dart';
 import 'package:quizz/cubits/answer_cubit/answer_cubit.dart';
 import 'package:quizz/cubits/data_cubit/get_data_cubit.dart';
 import 'package:quizz/cubits/get_user_data/get_user_data_cubit.dart';
-import 'package:quizz/features/auth/presentation/signin_screen.dart';
 import 'package:quizz/features/level/presentation/widgets/EraserButton.dart';
 import 'package:quizz/features/level/presentation/widgets/answer_gridview.dart';
 import 'package:quizz/features/level/presentation/widgets/ask_friends_button.dart';
@@ -33,7 +32,7 @@ class LevelScreenBody extends StatefulWidget {
     required this.level,
   });
 
-  int index;
+ final int index;
  final Level level;
 
   @override
@@ -177,25 +176,40 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
                                       context.read<AnswerCubit>().getAnswer();
 
                                       if (equal) {
-                                        successDialog( context, data.a);
-                                       await updateData(
-                                            widget.level.currentLevelQuestion,
-                                            widget.level.total,
-                                            widget.index);
+                                        if (initializeIndex == widget.level.currentLevelQuestion )
+                                          {
+                                            Navigator.of(context).pop;
+                                            addNewLevel();
 
-                                        context
-                                            .read<DataCubit>()
-                                            .GetData(widget.index);
-                                        setState(() {});
+                                          }
 
-                                        context
-                                            .read<GetUserDataCubit>()
-                                            .getUserData();
-                                        setState(() {
-                                          initializeIndex++;
-                                        });
+                                        else {
+                                          successDialog( context, data.a);
+                                          if (initializeIndex == widget.level.currentLevelQuestion -1 ) {
+                                            await updateData(
+                                                widget
+                                                    .level.currentLevelQuestion,
+                                                widget.level.total,
+                                                widget.index,
+                                              user.total,
+                                              user.currentQuestion
 
 
+                                            );
+                                          }
+
+                                          context
+                                              .read<DataCubit>()
+                                              .GetData(widget.index);
+                                          setState(() {});
+
+                                          context
+                                              .read<GetUserDataCubit>()
+                                              .getUserData();
+                                          setState(() {
+                                            initializeIndex++;
+                                          });
+                                        }
                                       } else {
                                         faildDialoge(context, answer);
                                       }

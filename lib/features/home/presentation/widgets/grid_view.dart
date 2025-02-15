@@ -51,6 +51,8 @@ class _CustomGridViewState extends State<CustomGridView> {
                         mainAxisSpacing: 20),
                     itemBuilder: (BuildContext context, int index) {
                      List <Level> levels = usermodel.levels;
+                     Level? level ;
+
                       return GestureDetector(
                         onTap: () {
 
