@@ -1,65 +1,71 @@
 class UserModel {
-  final List<Level> levels;
-  final int currentQuestion;
-  final int total;
-  final String image;
-  final String name;
-  final int score;
+  String name;
+  String image;
+  int score;
+  int currentQuestion;
+  int total;
+  List<Level> levels;
 
   UserModel({
-    required this.levels,
+    required this.name,
+    required this.image,
+    required this.score,
     required this.currentQuestion,
     required this.total,
-    required this.image,
-    required this.name,
-    required this.score,
+    required this.levels,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    final data = json['data'] != null ? Map<String, dynamic>.from(json['data']) : {};
+  // Factory method to create UserModel from JSON
+  factory UserModel.fromJson(Map<dynamic, dynamic> json) {
+    // Convert `json['data']` to a proper Map<String, dynamic>
+    final Map<String, dynamic> data =
+        (json['data'] as Map?)?.map((key, value) => MapEntry(key.toString(), value)) ?? {};
 
     return UserModel(
-      levels: (data['levels'] is List)
-          ? (data['levels'] as List)
-          .map((level) => level is Map<String, dynamic> ? Level.fromJson(level) : Level(currentLevelQuestion: 0, total: 0))
-          .toList()
-          : [],
-      currentQuestion: data['currentQuestion'] as int? ?? 0,
-      total: data['total'] as int? ?? 0,
-      image: json['image'] as String? ?? '',
       name: json['name'] as String? ?? '',
-      score: json['score'] as int? ?? 0,
+      image: json['image'] as String? ?? '',
+      score: (json['score'] as num?)?.toInt() ?? 0,
+      currentQuestion: (data['currentQuestion'] as num?)?.toInt() ?? 0,
+      total: (data['total'] as num?)?.toInt() ?? 0,
+      levels: (data['levels'] as List?)
+          ?.map((level) => Level.fromJson(Map<String, dynamic>.from(level as Map)))
+          .toList() ??
+          [], // Default to an empty list if null
     );
   }
 
-
   Map<String, dynamic> toJson() {
     return {
+      'name': name,
+      'image': image,
+      'score': score,
       'data': {
-        'levels': levels.map((level) => level.toJson()).toList(),
         'currentQuestion': currentQuestion,
         'total': total,
-      },
-      'image': image,
-      'name': name,
-      'score': score,
+        'levels': levels.map((level) => level.toJson()).toList(),
+      }
     };
   }
 }
 
 class Level {
-  final int currentLevelQuestion;
-  final int total;
+  int currentLevelQuestion;
+  int total;
 
-  Level({required this.currentLevelQuestion, required this.total});
+  Level({
+    required this.currentLevelQuestion,
+    required this.total,
+  });
 
+  // Convert JSON to Level object
   factory Level.fromJson(Map<String, dynamic> json) {
     return Level(
-      currentLevelQuestion: json['currentLevelQuestion'] as int? ?? 0,
-      total: json['total'] as int? ?? 0,
+      currentLevelQuestion: (json['currentLevelQuestion'] as num?)?.toInt() ?? 0,
+      total: (json['total'] as num?)?.toInt() ?? 0,
     );
   }
 
+  // Convert Level object to JSON
   Map<String, dynamic> toJson() {
     return {
       'currentLevelQuestion': currentLevelQuestion,

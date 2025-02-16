@@ -58,7 +58,9 @@ class _CustomGridViewState extends State<CustomGridView> {
 
                       return GestureDetector(
 
+
                         onTap: () {
+                          print(levels[index].total);
 
                           Get.to(
                             () => LevelScreen(

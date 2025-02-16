@@ -46,8 +46,7 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
 
   @override
   void initState() {
-    print('the index is ${widget.level.currentLevelQuestion}');
-    initializeIndex = widget.level.currentLevelQuestion ;
+    initializeIndex = widget.level.currentLevelQuestion  - 1 ;
     context.read<DataCubit>().GetData(widget.index);
     context.read<AnswerCubit>().getAnswer();
     super.initState();
@@ -205,21 +204,19 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
             child: Text(state.message),
           );
         }
-        return Container(); // Placeholder for no data
+        return Container();
       },
     );
   }
 
   Future<void> answerTrue(BuildContext context, QuestionModel data,
       UserModel user, List<QuestionModel> list) async {
-    print('the length is ${list.length}');
-    print('the init is ${initializeIndex}');
-    print('index is ${widget.index}');
     // successDialog( context, data.a);
     await updateData(widget.level.currentLevelQuestion, widget.level.total,
         widget.index , user.total, user.currentQuestion);
 
     context.read<DataCubit>().GetData(widget.index);
+
     setState(() {});
 
     context.read<GetUserDataCubit>().getUserData();
