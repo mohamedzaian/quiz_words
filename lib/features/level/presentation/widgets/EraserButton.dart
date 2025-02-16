@@ -7,9 +7,10 @@ import '../../../../cubits/answer_cubit/answer_cubit.dart';
 
 class EraserButton extends StatefulWidget {
   const EraserButton({
-    super.key, required this.answer,
+    super.key, required this.answer, required this.invisibleList,
   });
   final List<String>answer ;
+  final List<String>invisibleList ;
 
   @override
   State<EraserButton> createState() => _EraserButtonState();
@@ -29,7 +30,10 @@ class _EraserButtonState extends State<EraserButton> {
         onPressed: ()
           {
             widget.answer.removeLast();
+            widget.invisibleList.removeLast();
             context.read<AnswerCubit>().getAnswer();
+            print(widget.invisibleList);
+
 
 
 

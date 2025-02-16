@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/check_available_level.dart';
 import '../../../../core/custom_bold_text.dart';
 import '../../../../core/icon_lock.dart';
 import '../../../level/data/models/user_model.dart';

@@ -40,13 +40,18 @@ class LevelScreenBody extends StatefulWidget {
 
 class _LevelScreenBodyState extends State<LevelScreenBody> {
   bool visible = true;
+  late List<bool> visibilityList;
+  late List<String> invisibleList ;
 
   ListEquality listEqual = ListEquality();
   var initializeIndex;
 
   @override
   void initState() {
+
+invisibleList = [];
     initializeIndex = widget.level.currentLevelQuestion  - 1 ;
+
     context.read<DataCubit>().GetData(widget.index);
     context.read<AnswerCubit>().getAnswer();
     super.initState();
@@ -64,6 +69,8 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
           final list = state.list;
           final data = state.list[initializeIndex];
           List<String> letters = getList(data.a);
+          visibilityList = List.generate(letters.length, (_) => true);
+
           letters.shuffle();
           return BlocBuilder<AnswerCubit, AnswerState>(
             builder: (context, state) {
@@ -72,6 +79,7 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
                 return BlocBuilder<GetUserDataCubit, GetUserDataState>(
                   builder: (context, state) {
                     if (state is GetUserDataSuccess) {
+
                       UserModel user = state.userModel;
 
                       return Container(
@@ -108,6 +116,7 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
                                   ShowAnswerButton(),
                                   EraserButton(
                                     answer: answer,
+                                    invisibleList: invisibleList,
                                   ),
                                   SkipButton(),
                                   AskFriendsButton()
@@ -128,6 +137,7 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
                                   itemBuilder: (context, i) {
                                     return GestureDetector(
                                       onTap: () {
+
                                         if (answer.length < data.a.length) {
                                           context
                                               .read<AnswerCubit>()
@@ -135,10 +145,15 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
                                           context
                                               .read<AnswerCubit>()
                                               .getAnswer();
+                                          visibilityList[i]= false;
+                                          invisibleList.add(letters[i]);
+
+
+
                                         }
                                       },
                                       child: Visibility(
-                                        visible: visible,
+                                        visible: visibilityList[i],
                                         child: Container(
                                           child: Center(
                                             child: CustomBoldText(

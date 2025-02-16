@@ -10,7 +10,6 @@ class AnswerCubit extends Cubit<AnswerState> {
   setAnswer (String letter )
   {
     answer.add(letter);
-    print(answer);
 
    ;
   }

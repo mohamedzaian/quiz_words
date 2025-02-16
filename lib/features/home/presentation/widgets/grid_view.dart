@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:quizz/cubits/data_cubit/get_data_cubit.dart';
 import 'package:quizz/cubits/get_user_data/get_user_data_cubit.dart';
 import 'package:quizz/cubits/levels_cubit/levels_cubit.dart';
 import 'package:quizz/features/home/presentation/widgets/container_level.dart';
