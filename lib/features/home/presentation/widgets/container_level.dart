@@ -17,7 +17,7 @@ final int index;
   final List<Level> levels;
   @override
   Widget build(BuildContext context) {
-    bool isLocked = index >= levels.length || levels[index].total == 0;
+    bool isLocked = index >= levels.length ;
 
     return Container(
       decoration: BoxDecoration(
