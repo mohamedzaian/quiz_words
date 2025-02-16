@@ -53,11 +53,15 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
   }
 
   Widget build(BuildContext context) {
-    return BlocBuilder<DataCubit, DataState>(
+
+      return BlocBuilder<DataCubit, DataState>(
       builder: (context, state) {
         if (state is DataLoading) {
-          return Center(
-            child: CircularProgressIndicator(),
+          return Container(
+            decoration: splashDecoration,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         }
         if (state is DataSuccess) {
