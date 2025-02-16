@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:quizz/core/colors.dart';
 import 'package:quizz/features/level/presentation/widgets/level_screen_body.dart';
 
 import '../data/models/user_model.dart';
@@ -13,10 +15,13 @@ class LevelScreen extends StatelessWidget {
 
 
   Widget build(BuildContext context) {
-    return Scaffold(
-
-
-      body: SafeArea(child: LevelScreenBody(index: index,level: level,)),
+    return Container(
+      color: brownColor,
+      child: SafeArea(
+        child: Scaffold(
+          body: LevelScreenBody(index: index,level: level,),
+        ),
+      ),
     );
   }
 }
