@@ -16,7 +16,6 @@ class AnswerCubit extends Cubit<AnswerState> {
   }
   getAnswer ()
   {
-    print('.....$answer');
     emit(Answerlist(answers: answer));
 
   }

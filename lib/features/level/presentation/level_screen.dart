@@ -4,16 +4,11 @@ import 'package:quizz/features/level/presentation/widgets/level_screen_body.dart
 import '../data/models/user_model.dart';
 
 
-class LevelScreen extends StatefulWidget {
-  const LevelScreen({super.key, required this.index, required this.level,});
+class LevelScreen extends StatelessWidget {
+  const LevelScreen({super.key, required this.index, required this.level, });
   final int index;
   final Level level ;
 
-  @override
-  State<LevelScreen> createState() => _LevelScreenState();
-}
-
-class _LevelScreenState extends State<LevelScreen> {
   @override
 
 
@@ -21,7 +16,7 @@ class _LevelScreenState extends State<LevelScreen> {
     return Scaffold(
 
 
-      body: LevelScreenBody(index: widget.index,level: widget.level,),
+      body: LevelScreenBody(index: index,level: level,),
     );
   }
 }

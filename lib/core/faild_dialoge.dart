@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 
 
-faildDialoge(BuildContext context ,List<String>answers)
+faildDialoge(BuildContext context )
 {
  AwesomeDialog(
     context: context,

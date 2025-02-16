@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:quizz/cubits/data_cubit/get_data_cubit.dart';
 import 'package:quizz/cubits/get_user_data/get_user_data_cubit.dart';
 import 'package:quizz/cubits/levels_cubit/levels_cubit.dart';
 import 'package:quizz/features/home/presentation/widgets/container_level.dart';
@@ -21,6 +22,7 @@ class _CustomGridViewState extends State<CustomGridView> {
   @override
   void initState() {
     context.read<LevelsCubit>().loadData();
+
     super.initState();
   }
 
@@ -40,6 +42,7 @@ class _CustomGridViewState extends State<CustomGridView> {
             builder: (context, state) {
               if (state is GetUserDataSuccess) {
                 UserModel usermodel = state.userModel;
+                print(usermodel.levels);
                 return Expanded(
                   child: GridView.builder(
                     padding: EdgeInsets.all(20),
@@ -51,15 +54,17 @@ class _CustomGridViewState extends State<CustomGridView> {
                         mainAxisSpacing: 20),
                     itemBuilder: (BuildContext context, int index) {
                      List <Level> levels = usermodel.levels;
-                     Level? level ;
+
 
                       return GestureDetector(
+
                         onTap: () {
 
                           Get.to(
                             () => LevelScreen(
-                              index: index + 1,
-                              level: usermodel.levels[index],
+                              index: index + 1 ,
+                              level: levels[index],
+
                             ),
                           );
                         },

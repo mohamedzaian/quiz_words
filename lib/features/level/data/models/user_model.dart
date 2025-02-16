@@ -14,13 +14,16 @@ class UserModel {
     required this.name,
     required this.score,
   });
+
   factory UserModel.fromJson(Map<String, dynamic> json) {
     final data = json['data'] != null ? Map<String, dynamic>.from(json['data']) : {};
 
     return UserModel(
-      levels: (data['levels'] as List<dynamic>? ?? [])
-          .map((level) => Level.fromJson(Map<String, dynamic>.from(level)))
-          .toList(),
+      levels: (data['levels'] is List)
+          ? (data['levels'] as List)
+          .map((level) => level is Map<String, dynamic> ? Level.fromJson(level) : Level(currentLevelQuestion: 0, total: 0))
+          .toList()
+          : [],
       currentQuestion: data['currentQuestion'] as int? ?? 0,
       total: data['total'] as int? ?? 0,
       image: json['image'] as String? ?? '',
@@ -52,8 +55,8 @@ class Level {
 
   factory Level.fromJson(Map<String, dynamic> json) {
     return Level(
-      currentLevelQuestion: json['currentLevelQuestion'] ?? 0,
-      total: json['total'],
+      currentLevelQuestion: json['currentLevelQuestion'] as int? ?? 0,
+      total: json['total'] as int? ?? 0,
     );
   }
 

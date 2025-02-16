@@ -19,6 +19,7 @@ class GetUserDataCubit extends Cubit<GetUserDataState> {
 
       final userdata = Map<String, dynamic>.from(data );
       final userModel  = UserModel.fromJson(userdata);
+      print('the list is ${userModel.levels}');
       emit(GetUserDataSuccess(userModel: userModel));
     } on Exception catch (e) {
       emit(GetUserDataFailed(errorMessage: e.toString()));
