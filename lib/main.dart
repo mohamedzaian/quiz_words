@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quizz/core/colors.dart';
 import 'package:quizz/cubits/add_user_cubit/add_user_cubit.dart';
 import 'package:quizz/cubits/answer_cubit/answer_cubit.dart';
 import 'package:quizz/cubits/data_cubit/get_data_cubit.dart';
@@ -10,9 +12,7 @@ import 'package:quizz/features/splash/presentation/splash_screen.dart';
 import 'package:get/get.dart';
 import 'package:quizz/firebase_options.dart';
 
-
-void main() async
-{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -26,6 +26,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: brownColor,
+      systemNavigationBarColor: brownColor,
+    ));
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -33,11 +38,14 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => DataCubit(),
-        ),  BlocProvider(
+        ),
+        BlocProvider(
           create: (context) => AnswerCubit(),
-        ), BlocProvider(
+        ),
+        BlocProvider(
           create: (context) => AddUserCubit(),
-        ),BlocProvider(
+        ),
+        BlocProvider(
           create: (context) => GetUserDataCubit(),
         ),
       ],

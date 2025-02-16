@@ -16,7 +16,7 @@ class LevelScreen extends StatelessWidget {
     return Scaffold(
 
 
-      body: LevelScreenBody(index: index,level: level,),
+      body: SafeArea(child: LevelScreenBody(index: index,level: level,)),
     );
   }
 }
