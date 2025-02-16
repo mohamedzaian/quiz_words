@@ -60,7 +60,6 @@ class _CustomGridViewState extends State<CustomGridView> {
 
 
                         onTap: () {
-                          print(levels[index].total);
 
                           Get.to(
                             () => LevelScreen(

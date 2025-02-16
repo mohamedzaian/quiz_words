@@ -212,9 +212,10 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
   Future<void> answerTrue(BuildContext context, QuestionModel data,
       UserModel user, List<QuestionModel> list) async {
     // successDialog( context, data.a);
-    await updateData(widget.level.currentLevelQuestion, widget.level.total,
-        widget.index , user.total, user.currentQuestion);
-
+    if  (initializeIndex != list.length - 1) {
+      await updateData(widget.level.currentLevelQuestion, widget.level.total,
+          widget.index, user.total, user.currentQuestion);
+    }
     context.read<DataCubit>().GetData(widget.index);
 
     setState(() {});

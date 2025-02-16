@@ -8,14 +8,17 @@ import '../../../level/data/models/user_model.dart';
 class ContainerLevel extends StatelessWidget {
   const ContainerLevel({
     super.key,
-    required this.levels, required this.index,
+    required this.levels,
+    required this.index,
+
   });
 
 final int index;
   final List<Level> levels;
-
   @override
   Widget build(BuildContext context) {
+    bool isLocked = index >= levels.length || levels[index].total == 0;
+
     return Container(
       decoration: BoxDecoration(
         color: Color(0xffFD850D),
@@ -28,7 +31,7 @@ final int index;
           ),
         ],
       ),
-      child: checkAvailableLevel(levels.length, index) ?  IconLock()  : Stack(
+      child: isLocked ?  IconLock() :     Stack(
         alignment: Alignment.center,
         children: [
           CustomBoldText(
@@ -43,7 +46,7 @@ final int index;
             ),
           ),
         ],
-      ),
+      ) ,
     );
   }
 }
