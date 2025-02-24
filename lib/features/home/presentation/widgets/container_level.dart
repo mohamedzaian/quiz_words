@@ -14,9 +14,13 @@ class ContainerLevel extends StatelessWidget {
 
 final int index;
   final List<Level> levels;
+
   @override
   Widget build(BuildContext context) {
     bool isLocked = index >= levels.length ;
+    final total = isLocked ? 0 : levels[index].total;
+    bool isPassed = total  >=  3 && isLocked;
+
 
     return Container(
       decoration: BoxDecoration(
@@ -35,15 +39,15 @@ final int index;
         children: [
           CustomBoldText(
               text: '${index + 1} ', fontSize: 30),
-          Positioned(
+        isPassed ?  Positioned(
             bottom: 0,
             right: 0,
-            child: Icon(
+            child:  Icon(
               Icons.check_circle,
               size: 30,
               color: Color(0xff65DB12),
             ),
-          ),
+          ) : SizedBox(),
         ],
       ) ,
     );

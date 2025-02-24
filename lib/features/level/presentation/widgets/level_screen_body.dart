@@ -22,6 +22,7 @@ import '../../../../core/colors.dart';
 import '../../../../core/container decoration.dart';
 import '../../../../core/custom_text.dart';
 import '../../../../core/faild_dialoge.dart';
+import '../../../../core/success_dialoge.dart';
 import '../../data/models/user_model.dart';
 
 class LevelScreenBody extends StatefulWidget {
@@ -42,6 +43,7 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
   bool visible = true;
   late List<bool> visibilityList;
   late List<String> invisibleList ;
+
 
   ListEquality listEqual = ListEquality();
   var initializeIndex;
@@ -113,7 +115,7 @@ invisibleList = [];
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 12.0),
+                                  const EdgeInsets.symmetric(horizontal: 12),
                               child: Row(
                                 spacing: 6,
                                 children: [
@@ -207,7 +209,7 @@ invisibleList = [];
                                       if (equal) {
 
 
-                                         answerTrue(
+                                       await  answerTrue(
                                             context, data, user, list);
                                       } else {
                                         faildDialoge(context);
@@ -239,17 +241,19 @@ invisibleList = [];
     );
   }
 
-  void answerTrue(BuildContext context, QuestionModel data,
+  Future<void> answerTrue(BuildContext context, QuestionModel data,
       UserModel user, List<QuestionModel> list) async {
     // successDialog( context, data.a);
-    if  (initializeIndex != list.length - 1) {
+
       await updateData(widget.level.currentLevelQuestion, widget.level.total,
           widget.index, user.total, user.currentQuestion);
 
-      context.read<DataCubit>().GetData(widget.index);
+       await context.read<GetUserDataCubit>().getUserData();
 
-      context.read<GetUserDataCubit>().getUserData();
-    }
+      await context.read<DataCubit>().GetData(widget.index);
+
+
+
     if (initializeIndex != list.length - 1) {
       setState(() {
         initializeIndex++;

@@ -8,7 +8,7 @@ part 'get_data_state.dart';
 class DataCubit extends Cubit<DataState> {
   DataCubit() : super(DataInitial());
 
-  void GetData(int key) async {
+  Future <void> GetData(int key) async {
     emit(DataLoading());
     try {
       final snapshot =

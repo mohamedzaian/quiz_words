@@ -8,7 +8,7 @@ part 'get_user_data_state.dart';
 
 class GetUserDataCubit extends Cubit<GetUserDataState> {
   GetUserDataCubit() : super(GetUserDataInitial());
-  getUserData () async
+  Future <void> getUserData () async
   {
     emit(GetUserDataLoading());
     try {
@@ -21,6 +21,7 @@ class GetUserDataCubit extends Cubit<GetUserDataState> {
       final userModel  = UserModel.fromJson(userdata);
       print('the list is ${userdata}');
       print('the current q is ${userModel.levels.first.currentLevelQuestion}');
+
       emit(GetUserDataSuccess(userModel: userModel));
     } on Exception catch (e) {
       emit(GetUserDataFailed(errorMessage: e.toString()));
