@@ -31,7 +31,7 @@ class AnswerGridView extends StatelessWidget {
                 child: Center(
                     child: CustomBoldText(
                         text: answer.length > i ? answer[i] : '',
-                        fontsize: 18)),
+                        fontSize: 18)),
                 height: 35,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),

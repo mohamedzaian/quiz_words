@@ -8,7 +8,7 @@ class RemoveAdsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return  ElevatedButton(onPressed: ()
         {
-        }, child: CustomBoldText(text: 'REMOVE ADS',fontsize: 20,),
+        }, child: CustomBoldText(text: 'REMOVE ADS',fontSize: 20,),
     style:ElevatedButton.styleFrom(
       backgroundColor: Color(0xff4D2501),
       shape: RoundedRectangleBorder(

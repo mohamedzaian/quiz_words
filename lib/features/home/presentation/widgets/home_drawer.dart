@@ -52,7 +52,7 @@ class HomeDrawer extends StatelessWidget {
                  children: [
                    drawerItems[i].icon,
                    SizedBox(width: 20),
-                   CustomBoldText(text: drawerItems[i].name, fontsize: 24 , color: Color(0xff4D2501),),
+                   CustomBoldText(text: drawerItems[i].name, fontSize: 24 , color: Color(0xff4D2501),),
 
                  ],
                ),

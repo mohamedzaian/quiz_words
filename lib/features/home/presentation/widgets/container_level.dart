@@ -34,7 +34,7 @@ final int index;
         alignment: Alignment.center,
         children: [
           CustomBoldText(
-              text: '${index + 1} ', fontsize: 30),
+              text: '${index + 1} ', fontSize: 30),
           Positioned(
             bottom: 0,
             right: 0,

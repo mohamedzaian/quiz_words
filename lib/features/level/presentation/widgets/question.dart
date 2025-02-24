@@ -14,6 +14,6 @@ class Question extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: CustomText(text: 'This is the ${data.q}', fontsize: 24 , color: brownColor,), );
+    return Center(child: CustomText(text: 'This is the ${data.q}', fontSize: 24 , color: brownColor,), );
   }
 }

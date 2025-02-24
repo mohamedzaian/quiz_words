@@ -7,7 +7,7 @@ class LevelsText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  CustomText(text: 'Levels', fontsize: 24
+    return  CustomText(text: 'Levels', fontSize: 24
     );
   }
 }

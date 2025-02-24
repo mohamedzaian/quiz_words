@@ -119,6 +119,17 @@ invisibleList = [];
                                 children: [
                                   ShowAnswerButton(),
                                   EraserButton(
+                                    function: ()
+                                    {
+                                      for (bool value in visibilityList)
+                                        {
+                                          if (value == false)
+                                            {
+                                            }
+
+                                        }
+
+                                    },
                                     answer: answer,
                                     invisibleList: invisibleList,
                                   ),
@@ -161,7 +172,7 @@ invisibleList = [];
                                         child: Container(
                                           child: Center(
                                             child: CustomBoldText(
-                                                text: letters[i], fontsize: 18),
+                                                text: letters[i], fontSize: 18),
                                           ),
                                           height: 35,
                                           decoration: BoxDecoration(
@@ -196,14 +207,14 @@ invisibleList = [];
                                       if (equal) {
 
 
-                                        await answerTrue(
+                                         answerTrue(
                                             context, data, user, list);
                                       } else {
                                         faildDialoge(context);
                                       }
                                     },
                                     child:
-                                        CustomText(text: "Done", fontsize: 20)),
+                                        CustomText(text: "Done", fontSize: 20)),
                               ),
                             )
                           ],
@@ -228,18 +239,17 @@ invisibleList = [];
     );
   }
 
-  Future<void> answerTrue(BuildContext context, QuestionModel data,
+  void answerTrue(BuildContext context, QuestionModel data,
       UserModel user, List<QuestionModel> list) async {
     // successDialog( context, data.a);
     if  (initializeIndex != list.length - 1) {
       await updateData(widget.level.currentLevelQuestion, widget.level.total,
           widget.index, user.total, user.currentQuestion);
+
+      context.read<DataCubit>().GetData(widget.index);
+
+      context.read<GetUserDataCubit>().getUserData();
     }
-    context.read<DataCubit>().GetData(widget.index);
-
-    setState(() {});
-
-    context.read<GetUserDataCubit>().getUserData();
     if (initializeIndex != list.length - 1) {
       setState(() {
         initializeIndex++;

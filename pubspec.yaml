@@ -46,6 +46,7 @@ dependencies:
   firebase_auth: ^5.4.0
   awesome_dialog: ^3.2.1
   collection: ^1.19.0
+  device_preview: ^1.2.0
 
 dev_dependencies:
   flutter_test:
