@@ -3,11 +3,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:quizz/core/add_new_level.dart';
 import 'package:quizz/core/custom_bold_text.dart';
-import 'package:quizz/core/list_of_random_letter.dart';
 import 'package:quizz/core/update_data.dart';
 import 'package:quizz/cubits/answer_cubit/answer_cubit.dart';
 import 'package:quizz/cubits/data_cubit/get_data_cubit.dart';
+import 'package:quizz/cubits/get_letter_cubit/get_letter_cubit.dart';
 import 'package:quizz/cubits/get_user_data/get_user_data_cubit.dart';
 import 'package:quizz/features/home/data/model/level_model.dart';
 import 'package:quizz/features/level/presentation/widgets/EraserButton.dart';
@@ -22,7 +23,6 @@ import '../../../../core/colors.dart';
 import '../../../../core/container decoration.dart';
 import '../../../../core/custom_text.dart';
 import '../../../../core/faild_dialoge.dart';
-import '../../../../core/success_dialoge.dart';
 import '../../data/models/user_model.dart';
 
 class LevelScreenBody extends StatefulWidget {
@@ -35,6 +35,7 @@ class LevelScreenBody extends StatefulWidget {
   final int index;
   final Level level;
 
+
   @override
   State<LevelScreenBody> createState() => _LevelScreenBodyState();
 }
@@ -42,7 +43,6 @@ class LevelScreenBody extends StatefulWidget {
 class _LevelScreenBodyState extends State<LevelScreenBody> {
   bool visible = true;
   late List<bool> visibilityList;
-  late List<String> invisibleList ;
 
 
   ListEquality listEqual = ListEquality();
@@ -50,8 +50,9 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
 
   @override
   void initState() {
+    print('the index is ${widget.index}');
 
-invisibleList = [];
+
     initializeIndex = widget.level.currentLevelQuestion  - 1 ;
 
     context.read<DataCubit>().GetData(widget.index);
@@ -74,7 +75,7 @@ invisibleList = [];
         if (state is DataSuccess) {
           final list = state.list;
           final data = state.list[initializeIndex];
-          List<String> letters = getList(data.a);
+          List<String> letters = context.read<GetLetterCubit>().getLetter(data.a);
           visibilityList = List.generate(letters.length, (_) => true);
 
           letters.shuffle();
@@ -121,19 +122,12 @@ invisibleList = [];
                                 children: [
                                   ShowAnswerButton(),
                                   EraserButton(
-                                    function: ()
-                                    {
-                                      for (bool value in visibilityList)
-                                        {
-                                          if (value == false)
-                                            {
-                                            }
 
-                                        }
 
-                                    },
-                                    answer: answer,
-                                    invisibleList: invisibleList,
+                                    answer: data.a,
+                                    answerRemoved: answer,
+
+                                    visibleList: visibilityList,
                                   ),
                                   SkipButton(),
                                   AskFriendsButton()
@@ -163,7 +157,6 @@ invisibleList = [];
                                               .read<AnswerCubit>()
                                               .getAnswer();
                                           visibilityList[i]= false;
-                                          invisibleList.add(letters[i]);
 
 
 
@@ -213,6 +206,9 @@ invisibleList = [];
                                             context, data, user, list);
                                       } else {
                                         faildDialoge(context);
+                                        visibilityList.fillRange(0, visibilityList.length , true);
+                                        context.read<GetLetterCubit>().getLetter(data.a);
+
                                       }
                                     },
                                     child:
@@ -251,6 +247,13 @@ invisibleList = [];
        await context.read<GetUserDataCubit>().getUserData();
 
       await context.read<DataCubit>().GetData(widget.index);
+      if (widget.level.currentLevelQuestion == list.length)
+        {
+
+
+          addNewLevel(widget.index);
+        }
+
 
 
 

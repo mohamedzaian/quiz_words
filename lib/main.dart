@@ -8,6 +8,7 @@ import 'package:quizz/core/colors.dart';
 import 'package:quizz/cubits/add_user_cubit/add_user_cubit.dart';
 import 'package:quizz/cubits/answer_cubit/answer_cubit.dart';
 import 'package:quizz/cubits/data_cubit/get_data_cubit.dart';
+import 'package:quizz/cubits/get_letter_cubit/get_letter_cubit.dart';
 import 'package:quizz/cubits/get_user_data/get_user_data_cubit.dart';
 import 'package:quizz/cubits/levels_cubit/levels_cubit.dart';
 import 'package:quizz/features/splash/presentation/splash_screen.dart';
@@ -55,6 +56,8 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetUserDataCubit(),
+        ), BlocProvider(
+          create: (context) => GetLetterCubit(),
         ),
       ],
       child: GetMaterialApp(

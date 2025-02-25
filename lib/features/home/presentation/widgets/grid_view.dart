@@ -37,11 +37,12 @@ class _CustomGridViewState extends State<CustomGridView> {
         }
         if (state is LevelsSuccess) {
           int count = state.count;
+
           return BlocBuilder<GetUserDataCubit, GetUserDataState>(
             builder: (context, state) {
               if (state is GetUserDataSuccess) {
-                UserModel usermodel = state.userModel;
-                print(usermodel.levels);
+                UserModel userModel = state.userModel;
+
                 return Expanded(
                   child: GridView.builder(
                     padding: EdgeInsets.all(20),
@@ -52,7 +53,7 @@ class _CustomGridViewState extends State<CustomGridView> {
                         crossAxisSpacing: 20,
                         mainAxisSpacing: 20),
                     itemBuilder: (BuildContext context, int index) {
-                     List <Level> levels = usermodel.levels;
+                     List <Level> levels = userModel.levels;
 
                       return GestureDetector(
                         onTap: () {
@@ -61,6 +62,8 @@ class _CustomGridViewState extends State<CustomGridView> {
                             () => LevelScreen(
                               index: index + 1 ,
                               level: levels[index],
+
+
 
                             ),
                           );

@@ -19,7 +19,7 @@ final int index;
   Widget build(BuildContext context) {
     bool isLocked = index >= levels.length ;
     final total = isLocked ? 0 : levels[index].total;
-    bool isPassed = total  >=  3 && isLocked;
+    bool isPassed = total  >=  3 && !isLocked;
 
 
     return Container(
