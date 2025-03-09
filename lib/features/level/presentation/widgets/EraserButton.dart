@@ -30,7 +30,7 @@ class EraserButton extends StatelessWidget {
             int index = visibleList.lastIndexOf(false);
             answerRemoved.removeLast();
             visibleList[index]= true;
-            visibleList.forEach((elment) => print('the elemnt number ${elment} '));
+            visibleList.forEach((element) => print('the element number ${element} '));
 
 
             context.read<AnswerCubit>().getAnswer();

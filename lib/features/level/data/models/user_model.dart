@@ -20,12 +20,12 @@ class UserModel {
     final Map<String, dynamic> data =
         (json['data'] as Map?)?.map((key, value) => MapEntry(key.toString(), value)) ?? {};
 
-    // Fix: Handle levels as Map and convert it to a List
+    // ✅ Fix: Handle `levels` as a List instead of a Map
     List<Level> levelsList = [];
-    if (data['levels'] is Map) {
-      levelsList = (data['levels'] as Map).entries.map((entry) {
-        return Level.fromJson(Map<String, dynamic>.from(entry.value));
-      }).toList();
+    if (data['levels'] is List) {
+      levelsList = (data['levels'] as List)
+          .map((level) => Level.fromJson(Map<String, dynamic>.from(level)))
+          .toList();
     }
 
     return UserModel(
@@ -34,10 +34,9 @@ class UserModel {
       score: (json['score'] as num?)?.toInt() ?? 0,
       currentQuestion: (data['currentQuestion'] as num?)?.toInt() ?? 0,
       total: (data['total'] as num?)?.toInt() ?? 0,
-      levels: levelsList, // Use the converted list
+      levels: levelsList, // Use the fixed list
     );
   }
-
 
   Map<String, dynamic> toJson() {
     return {
