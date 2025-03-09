@@ -13,7 +13,7 @@ class AskFriendsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: context.width * .35,
+      width: context.width * .34,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,

@@ -22,6 +22,7 @@ final int index;
     bool isPassed = total  >=  3 && !isLocked;
 
 
+
     return Container(
       decoration: BoxDecoration(
         color: Color(0xffFD850D),

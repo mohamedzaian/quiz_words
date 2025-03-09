@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:quizz/cubits/get_letter_cubit/get_letter_cubit.dart';
 
 import '../../../../core/colors.dart';
 import '../../../../cubits/answer_cubit/answer_cubit.dart';
 
-class EraserButton extends StatefulWidget {
+class EraserButton extends StatelessWidget {
   const EraserButton({
-    super.key, required this.answerRemoved, required this.visibleList, required this.answer,
+    super.key, required this.answerRemoved, required this.visibleList,
   });
   final List<String>answerRemoved ;
   final List<bool> visibleList ;
-   final String answer ;
-
-  @override
-  State<EraserButton> createState() => _EraserButtonState();
-}
-
-class _EraserButtonState extends State<EraserButton> {
 
   @override
   Widget build(BuildContext context) {
@@ -31,24 +23,24 @@ class _EraserButtonState extends State<EraserButton> {
         radius: 20,
         child: IconButton(icon: Icon(FontAwesomeIcons.eraser , color: blueColor),
         onPressed:
+            answerRemoved.length != 0 ?
 
             ()
           {
-            int index = widget.visibleList.lastIndexOf(false);
-            widget.answerRemoved.removeLast();
-            widget.visibleList[index]= true;
-            print(widget.visibleList);
+            int index = visibleList.lastIndexOf(false);
+            answerRemoved.removeLast();
+            visibleList[index]= true;
+            visibleList.forEach((elment) => print('the elemnt number ${elment} '));
 
 
             context.read<AnswerCubit>().getAnswer();
-            context.read<GetLetterCubit>().getLetter(widget.answer);
 
 
 
 
 
 
-          },
+          } :null
         ) ,
 
       ),

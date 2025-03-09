@@ -17,9 +17,16 @@ class UserModel {
 
   // Factory method to create UserModel from JSON
   factory UserModel.fromJson(Map<dynamic, dynamic> json) {
-    // Convert `json['data']` to a proper Map<String, dynamic>
     final Map<String, dynamic> data =
         (json['data'] as Map?)?.map((key, value) => MapEntry(key.toString(), value)) ?? {};
+
+    // Fix: Handle levels as Map and convert it to a List
+    List<Level> levelsList = [];
+    if (data['levels'] is Map) {
+      levelsList = (data['levels'] as Map).entries.map((entry) {
+        return Level.fromJson(Map<String, dynamic>.from(entry.value));
+      }).toList();
+    }
 
     return UserModel(
       name: json['name'] as String? ?? '',
@@ -27,12 +34,10 @@ class UserModel {
       score: (json['score'] as num?)?.toInt() ?? 0,
       currentQuestion: (data['currentQuestion'] as num?)?.toInt() ?? 0,
       total: (data['total'] as num?)?.toInt() ?? 0,
-      levels: (data['levels'] as List?)
-          ?.map((level) => Level.fromJson(Map<String, dynamic>.from(level as Map)))
-          .toList() ??
-          [], // Default to an empty list if null
+      levels: levelsList, // Use the converted list
     );
   }
+
 
   Map<String, dynamic> toJson() {
     return {

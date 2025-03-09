@@ -50,12 +50,11 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
 
   @override
   void initState() {
-    print('the index is ${widget.index}');
 
 
     initializeIndex = widget.level.currentLevelQuestion  - 1 ;
 
-    context.read<DataCubit>().GetData(widget.index);
+    context.read<DataCubit>().GetData(widget.index +1);
     context.read<AnswerCubit>().getAnswer();
     super.initState();
   }
@@ -96,10 +95,10 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
                           children: [
                             CustomAppbar(
                               currentLevelQuestion: user
-                                      .levels[widget.index - 1]
+                                      .levels[widget.index  ]
                                       .currentLevelQuestion -
                                   1,
-                              total: user.levels[widget.index - 1].total,
+                              total: user.levels[widget.index ].total,
                               initializeIndex: initializeIndex,
                               length: list.length,
                             ),
@@ -124,7 +123,6 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
                                   EraserButton(
 
 
-                                    answer: data.a,
                                     answerRemoved: answer,
 
                                     visibleList: visibilityList,
@@ -136,6 +134,7 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
                             ),
                             Expanded(
                               child: GridView.builder(
+                                shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
                                   itemCount: letters.length,
                                   padding: EdgeInsets.symmetric(horizontal: 12),
@@ -202,8 +201,14 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
                                       if (equal) {
 
 
+
+
                                        await  answerTrue(
-                                            context, data, user, list);
+                                            context, data, user, list , widget.index );
+                                       if (widget.level.total == 3)
+                                       {
+                                         Navigator.of(context).pop();
+                                       }
                                       } else {
                                         faildDialoge(context);
                                         visibilityList.fillRange(0, visibilityList.length , true);
@@ -238,20 +243,24 @@ class _LevelScreenBodyState extends State<LevelScreenBody> {
   }
 
   Future<void> answerTrue(BuildContext context, QuestionModel data,
-      UserModel user, List<QuestionModel> list) async {
+      UserModel user, List<QuestionModel> list , int index) async {
     // successDialog( context, data.a);
 
-      await updateData(widget.level.currentLevelQuestion, widget.level.total,
-          widget.index, user.total, user.currentQuestion);
+
+//
+    await UpdateData.updateLvlData(widget.level.currentLevelQuestion, widget.level.total,  widget.index, list.length);
+    await UpdateData.updateUserData(user.total, user.currentQuestion );
+    print('the current qestion is ${user.levels[index].currentLevelQuestion}');
+    print ('the level is ${user.levels[index].total}');
 
        await context.read<GetUserDataCubit>().getUserData();
 
-      await context.read<DataCubit>().GetData(widget.index);
+      await context.read<DataCubit>().GetData(widget.index + 1);
       if (widget.level.currentLevelQuestion == list.length)
         {
 
 
-          addNewLevel(widget.index);
+          addNewLevel(widget.index +1 );
         }
 
 

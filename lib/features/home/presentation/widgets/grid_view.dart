@@ -54,20 +54,20 @@ class _CustomGridViewState extends State<CustomGridView> {
                         mainAxisSpacing: 20),
                     itemBuilder: (BuildContext context, int index) {
                      List <Level> levels = userModel.levels;
+                     bool isLocked = index >= levels.length;
 
                       return GestureDetector(
-                        onTap: () {
-
+                        onTap: isLocked  ? null :  () {
                           Get.to(
                             () => LevelScreen(
-                              index: index + 1 ,
+                              index: index  ,
                               level: levels[index],
 
 
 
                             ),
                           );
-                        },
+                        } ,
                         child: ContainerLevel(levels: levels , index : index),
                       );
                     },

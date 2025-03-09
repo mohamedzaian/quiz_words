@@ -16,7 +16,7 @@ class AnswerGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: context.height * 0.13,
+        height: context.height * 0.08,
         child: GridView.builder(
             physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsets.symmetric(horizontal: 12),
@@ -32,7 +32,7 @@ class AnswerGridView extends StatelessWidget {
                     child: CustomBoldText(
                         text: answer.length > i ? answer[i] : '',
                         fontSize: 18)),
-                height: 35,
+                height: context.width * .012,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: textColor),
