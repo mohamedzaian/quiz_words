@@ -32,11 +32,12 @@ class LoginButton extends StatelessWidget {
           child: Row(
             children: [
               Image.asset(Images.googleLogo , scale: 4.5,),
-              SizedBox(width: 30,),
+              SizedBox(width: 40,),
               Text('Sign in with Google', style:
               TextStyle(color: Colors.brown,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w500
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                fontFamily: 'neosans',
               ),
               )
             ],

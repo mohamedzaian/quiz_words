@@ -21,8 +21,6 @@ final int index;
     final total = isLocked ? 0 : levels[index].total;
     bool isPassed = total  >=  3 && !isLocked;
 
-
-
     return Container(
       decoration: BoxDecoration(
         color: Color(0xffFD850D),

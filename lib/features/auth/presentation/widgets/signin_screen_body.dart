@@ -29,7 +29,18 @@ class LoginScreenBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(Images.loginLogo),
+          SizedBox(
+            height: height / 10,
+          ),
+          Image.asset(Images.logoRound,scale: 1.5,),
+          SizedBox(
+            height: height / 100,
+          ),
+          Text('Supernatural Words Quiz',style: TextStyle(
+            fontSize: 25,
+            color: Colors.white,
+            fontFamily: 'neosans',
+          ),),
           SizedBox(
             height: height / 6.5,
           ),

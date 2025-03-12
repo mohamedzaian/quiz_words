@@ -55,15 +55,12 @@ class _CustomGridViewState extends State<CustomGridView> {
                     itemBuilder: (BuildContext context, int index) {
                      List <Level> levels = userModel.levels;
                      bool isLocked = index >= levels.length;
-
                       return GestureDetector(
                         onTap: isLocked  ? null :  () {
                           Get.to(
                             () => LevelScreen(
                               index: index  ,
                               level: levels[index],
-
-
 
                             ),
                           );

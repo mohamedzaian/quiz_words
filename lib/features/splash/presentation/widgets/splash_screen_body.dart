@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:quizz/core/container%20decoration.dart';
 
 import '../../../../core/images.dart';
 
@@ -12,22 +13,14 @@ class SplashScreenBody extends StatelessWidget {
     return  Container(
       height: double.infinity,
       width: double.infinity,
-      decoration:BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color(0xFFFFA726),
-            Color(0xFFFFA726),
-            Color(0xFFFFE0B2),
-            Color(0xFFFFffff)
-          ],
-          begin: Alignment.topLeft, // Gradient starts here
-          end: Alignment.bottomRight,
-        ),
-      ),
+      decoration:ContainerDecoration,
       child: Center(
-          child: Image.asset(Images.logo , scale: 0.5,)
-
-
+          child: Text('SUPERNATURAL',style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: Color(0xff54300C),
+            fontFamily: 'SPN',
+          ),)
       ),
     );
   }

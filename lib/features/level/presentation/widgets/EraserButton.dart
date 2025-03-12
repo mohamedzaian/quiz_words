@@ -36,10 +36,6 @@ class EraserButton extends StatelessWidget {
             context.read<AnswerCubit>().getAnswer();
 
 
-
-
-
-
           } :null
         ) ,
 
